@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.databasesampleapp.databinding.DogLayoutBinding
-import com.databasesampleapp.db.Dog
+import com.databasesampleapp.db.room.Dog
 
 class DogAdapter : ListAdapter<Dog, DogViewHolder>(itemComporator) {
 
