@@ -1,3 +1,63 @@
 <resources>
-    <string name="app_name">DatabaseSampleApp</string>
+    <string name="app_name">Database Sample App</string>
+
+    <!-- Entity layout texts -->
+    <string name="entity_age_text">Age: </string>
+    <string name="entity_breed_text">Breed: </string>
+
+    <!-- List Fragment texts -->
+    <string name="floating_add_button_description">Add new dog</string>
+
+    <!-- Toolbar texts -->
+    <string name="list_toolbar_title">Dogs</string>
+    <string name="toolbar_filter_title">Filter</string>
+    <string name="toolbar_filter_description">Set filters to the list</string>
+
+    <string name="toolbar_settings_title">Settings</string>
+    <string name="toolbar_settings_description">Click to open settings screen</string>
+
+    <string name="add_toolbar_title">Add New Dog</string>
+    <string name="toolbar_save_title">Save</string>
+    <string name="toolbar_save_description">Save added dog</string>
+
+    <!-- Fragment add texts -->
+    <string name="add_name_hint">name</string>
+    <string name="add_age_hint">age</string>
+    <string name="add_breed_hint">breed</string>
+    <string name="add_button_text">Add</string>
+
+    <!-- Filter screen texts -->
+    <string name="filter_name_title">Name</string>
+    <string name="filter_name_dialog_title">Filter by name</string>
+    <string name="filter_name_key">filter name</string>
+
+    <string name="filter_age_title">Age</string>
+    <string name="filter_age_dialog_title">Filter by age</string>
+    <string name="filter_age_key">filter age</string>
+
+    <string name="filter_breed_title">Breed</string>
+    <string name="filter_breed_dialog_title">Filter by breed</string>
+    <string name="filter_breed_key">filter breed</string>
+
+    <string name="filter_default_value">All</string>
+
+    <!-- Update Fragment Texts -->
+    <string name="update_button_text">Update</string>
+    <string name="update_toolbar_title">Update dog</string>
+
+    <!-- Settings texts -->
+    <string name="db_selector_key">db selector</string>
+    <string name="selector_title">Database</string>
+    <string name="selector_dialog_title">Choose preferred implementation</string>
+    <string-array name="selector_entries">
+        <item>Room</item>
+        <item>Cursor</item>
+    </string-array>
+    <string name="selector_room_entry">room</string>
+    <string name="selector_cursor_entry">cursor</string>
+    <string-array name="selector_entry_values">
+        <item>@string/selector_room_entry</item>
+        <item>@string/selector_cursor_entry</item>
+    </string-array>
+
 </resources>
