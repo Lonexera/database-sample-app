@@ -19,11 +19,11 @@ class DogsApplication : Application() {
         )
     }
 
-    private val roomRepository by lazy { RoomRepository(roomDatabase.dogDao()) }
+    val roomRepository by lazy { RoomRepository(roomDatabase.dogDao()) }
 
     private val cursorDatabase: CursorDatabaseOpenHelper by lazy {
         CursorDatabaseOpenHelper(this)
     }
 
-    private val cursorRepository by lazy { CursorRepository(cursorDatabase) }
+    val cursorRepository by lazy { CursorRepository(cursorDatabase) }
 }
