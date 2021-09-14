@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        android:defaultValue="@string/filter_default_value"
+        android:dialogTitle="@string/filter_name_dialog_title"
+        android:title="@string/filter_name_title"
+        android:key="@string/filter_name_key"
+        app:useSimpleSummaryProvider="true"/>
+
+    <EditTextPreference
+        android:defaultValue="@string/filter_default_value"
+        android:dialogTitle="@string/filter_age_dialog_title"
+        android:title="@string/filter_age_title"
+        android:key="@string/filter_age_key"
+        app:useSimpleSummaryProvider="true"/>
+
+    <EditTextPreference
+        android:defaultValue="@string/filter_default_value"
+        android:dialogTitle="@string/filter_breed_dialog_title"
+        android:title="@string/filter_breed_title"
+        android:key="@string/filter_breed_key"
+        app:useSimpleSummaryProvider="true"/>
+
+</PreferenceScreen>

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/layout/dog_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/layout/fragment_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/menu/add_toolbar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/xml/settings_screen.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
