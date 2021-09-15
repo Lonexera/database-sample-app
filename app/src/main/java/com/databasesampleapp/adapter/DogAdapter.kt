@@ -13,11 +13,11 @@ class DogAdapter : ListAdapter<Dog, DogViewHolder>(itemComporator) {
 
         private val itemComporator = object : DiffUtil.ItemCallback<Dog>() {
             override fun areItemsTheSame(oldItem: Dog, newItem: Dog): Boolean {
-                TODO("Not yet implemented")
+                return oldItem.uid == newItem.uid
             }
 
             override fun areContentsTheSame(oldItem: Dog, newItem: Dog): Boolean {
-                TODO("Not yet implemented")
+                return oldItem == newItem
             }
 
         }
