@@ -34,7 +34,7 @@ DogItemListener {
 
     override fun setListToAdapter(adapter: DogAdapter) {
         roomViewModel.allDogs.observe(this) {
-            adapter.submitList(it)
+            adapter.submitList(filterListWithPrefs(it))
         }
     }
 
@@ -69,5 +69,44 @@ DogItemListener {
 
     override fun openUpdateScreen(dog: Dog) {
         TODO("Not yet implemented")
+    }
+
+    private fun filterListWithPrefs(list: List<Dog>): List<Dog> {
+        var filteredList: List<Dog> = list
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val defaultValue = getString(R.string.filter_default_value)
+        val prefName = prefs?.getString(
+            getString(R.string.filter_name_key),
+            defaultValue
+        ) ?: defaultValue
+
+        val prefAge = prefs?.getString(
+            getString(R.string.filter_age_key),
+            defaultValue
+        ) ?: defaultValue
+
+        val prefBreed = prefs?.getString(
+            getString(R.string.filter_breed_key),
+            defaultValue
+        ) ?: defaultValue
+
+        filteredList =
+            if (prefName != defaultValue)
+                filteredList.filter { it.name == prefName }
+            else filteredList
+
+        filteredList = if (prefAge != defaultValue &&
+            prefAge.matches("""[0-9]{1,3}""".toRegex())) {
+            filteredList.filter { it.age == prefAge.toInt() }
+        }
+        else filteredList
+
+        filteredList = if (prefBreed != defaultValue)
+            filteredList.filter { it.breed == prefBreed }
+        else filteredList
+
+        return filteredList
     }
 }

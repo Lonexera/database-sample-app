@@ -39,7 +39,7 @@
     <string name="filter_breed_dialog_title">Filter by breed</string>
     <string name="filter_breed_key">filter breed</string>
 
-    <string name="filter_default_value">All</string>
+    <string name="filter_default_value" />
 
     <!-- Update Fragment Texts -->
     <string name="update_button_text">Update</string>
