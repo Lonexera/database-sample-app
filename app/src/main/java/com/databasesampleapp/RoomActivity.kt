@@ -17,13 +17,13 @@ import com.databasesampleapp.viewModels.DogRoomViewModelFactory
 
 class RoomActivity : AppCompatActivity(), ListFragment.ListFragmentListener,
 SettingsFragment.SettingsListener,
-AddFragment.AddFragmentListener {
+AddFragment.AddFragmentListener,
+DogItemListener {
 
     private lateinit var binding: ActivityMainBinding
     private val roomViewModel: DogRoomViewModel by viewModels {
         DogRoomViewModelFactory((application as DogsApplication).roomRepository)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,5 +61,13 @@ AddFragment.AddFragmentListener {
 
     override fun updateDog(dog: Dog) {
         roomViewModel.update(dog)
+    }
+
+    override fun deleteDog(dog: Dog) {
+        roomViewModel.delete(dog)
+    }
+
+    override fun openUpdateScreen(dog: Dog) {
+        TODO("Not yet implemented")
     }
 }

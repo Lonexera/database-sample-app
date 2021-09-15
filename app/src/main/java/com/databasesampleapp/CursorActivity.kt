@@ -20,16 +20,19 @@ import kotlinx.coroutines.launch
 
 class CursorActivity: AppCompatActivity(), ListFragment.ListFragmentListener,
 SettingsFragment.SettingsListener,
-AddFragment.AddFragmentListener {
+AddFragment.AddFragmentListener,
+DogItemListener {
 
     private lateinit var binding: ActivityMainBinding
     private val cursorViewModel: DogCursorViewModel by viewModels {
         DogCursorViewModelFactory((application as DogsApplication).cursorRepository)
     }
-    private var adapter = DogAdapter()
+    private lateinit var adapter: DogAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        adapter = DogAdapter(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -66,9 +69,20 @@ AddFragment.AddFragmentListener {
 
     override fun insertDog(dog: Dog) {
         cursorViewModel.insert(dog)
+        onDataSetChanged()
     }
 
     override fun updateDog(dog: Dog) {
         cursorViewModel.update(dog)
+        onDataSetChanged()
+    }
+
+    override fun deleteDog(dog: Dog) {
+        cursorViewModel.delete(dog)
+        onDataSetChanged()
+    }
+
+    override fun openUpdateScreen(dog: Dog) {
+        TODO("Not yet implemented")
     }
 }
