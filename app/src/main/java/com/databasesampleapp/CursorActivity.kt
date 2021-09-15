@@ -9,6 +9,8 @@ import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
 import com.databasesampleapp.adapter.DogAdapter
 import com.databasesampleapp.databinding.ActivityMainBinding
+import com.databasesampleapp.db.room.Dog
+import com.databasesampleapp.view.AddFragment
 import com.databasesampleapp.view.ListFragment
 import com.databasesampleapp.view.SettingsFragment
 import com.databasesampleapp.viewModels.DogCursorViewModel
@@ -17,7 +19,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class CursorActivity: AppCompatActivity(), ListFragment.ListFragmentListener,
-SettingsFragment.SettingsListener {
+SettingsFragment.SettingsListener,
+AddFragment.AddFragmentListener {
 
     private lateinit var binding: ActivityMainBinding
     private val cursorViewModel: DogCursorViewModel by viewModels {
@@ -59,5 +62,13 @@ SettingsFragment.SettingsListener {
             getString(R.string.selector_room_entry) -> openRoomActivity()
             else -> findNavController(binding.navHostFragmentContainer.id).popBackStack()
         }
+    }
+
+    override fun insertDog(dog: Dog) {
+        cursorViewModel.insert(dog)
+    }
+
+    override fun updateDog(dog: Dog) {
+        cursorViewModel.update(dog)
     }
 }
