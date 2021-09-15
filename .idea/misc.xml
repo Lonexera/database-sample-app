@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/drawable/ic_baseline_delete_32.xml" value="0.2203125" />
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/drawable/ic_baseline_edit_32.xml" value="0.2203125" />
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.2203125" />
         <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/layout/dog_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/layout/fragment_add.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/layout/fragment_list.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/menu/add_toolbar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/lolo/AndroidStudioProjects/DatabaseSampleApp/app/src/main/res/xml/settings_screen.xml" value="0.20416666666666666" />

@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="@color/yellow"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
         app:srcCompat="@drawable/ic_baseline_add_48"
