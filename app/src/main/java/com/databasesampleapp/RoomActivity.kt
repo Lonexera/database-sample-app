@@ -11,6 +11,7 @@ import com.databasesampleapp.databinding.ActivityMainBinding
 import com.databasesampleapp.db.room.Dog
 import com.databasesampleapp.view.AddFragment
 import com.databasesampleapp.view.ListFragment
+import com.databasesampleapp.view.ListFragmentDirections
 import com.databasesampleapp.view.SettingsFragment
 import com.databasesampleapp.viewModels.DogRoomViewModel
 import com.databasesampleapp.viewModels.DogRoomViewModelFactory
@@ -37,7 +38,6 @@ DogItemListener {
             adapter.submitList(filterListWithPrefs(it))
         }
     }
-
 
     private fun openCursorActivity() {
         val intent = Intent(this, CursorActivity::class.java)
@@ -68,7 +68,13 @@ DogItemListener {
     }
 
     override fun openUpdateScreen(dog: Dog) {
-        TODO("Not yet implemented")
+        findNavController(binding.navHostFragmentContainer.id)
+            .navigate(ListFragmentDirections.actionListFragmentToUpdateFragment(
+                dogAge = dog.age,
+                dogId = dog.uid,
+                dogName = dog.name,
+                dogBreed = dog.breed)
+            )
     }
 
     private fun filterListWithPrefs(list: List<Dog>): List<Dog> {

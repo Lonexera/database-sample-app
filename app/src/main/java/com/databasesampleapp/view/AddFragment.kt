@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.databasesampleapp.R
 import com.databasesampleapp.databinding.FragmentAddBinding
 import com.databasesampleapp.db.room.Dog
@@ -43,14 +44,12 @@ class AddFragment : Fragment() {
                 }
                 false
             }
-
             ageEdit.setOnKeyListener { _, _, _, ->
                 if(isInputAgeValid()) {
                     ageEdit.error = null
                 }
                 false
             }
-
             breedEdit.setOnKeyListener { _, _, _ ->
                 if(isInputBreedValid()) {
                     breedEdit.error = null
@@ -60,16 +59,20 @@ class AddFragment : Fragment() {
         }
 
         binding.addButton.setOnClickListener {
-            if(isInputValid())
+            if(isInputValid()) {
                 listener.insertDog(getAddedDog())
+                navigateToList()
+            }
             else showInputErrorTexts()
         }
 
         binding.addToolbar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.action_save -> {
-                    if(isInputValid())
+                    if(isInputValid()) {
                         listener.insertDog(getAddedDog())
+                        navigateToList()
+                    }
                     else showInputErrorTexts()
                     true
                 }
@@ -77,7 +80,7 @@ class AddFragment : Fragment() {
             }
         }
         binding.addToolbar.setNavigationOnClickListener {
-            // TODO implement add toolbar navigation listener
+            navigateToList()
         }
     }
 
@@ -125,5 +128,9 @@ class AddFragment : Fragment() {
     private fun showInputErrorToast() {
         Toast.makeText(context, "Invalid input", Toast.LENGTH_SHORT)
             .show()
+    }
+
+    private fun navigateToList() {
+        findNavController().navigate(R.id.action_addFragment_to_listFragment)
     }
 }

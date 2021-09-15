@@ -12,6 +12,7 @@ import com.databasesampleapp.databinding.ActivityMainBinding
 import com.databasesampleapp.db.room.Dog
 import com.databasesampleapp.view.AddFragment
 import com.databasesampleapp.view.ListFragment
+import com.databasesampleapp.view.ListFragmentDirections
 import com.databasesampleapp.view.SettingsFragment
 import com.databasesampleapp.viewModels.DogCursorViewModel
 import com.databasesampleapp.viewModels.DogCursorViewModelFactory
@@ -31,8 +32,6 @@ DogItemListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        adapter = DogAdapter(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -83,7 +82,13 @@ DogItemListener {
     }
 
     override fun openUpdateScreen(dog: Dog) {
-        TODO("Not yet implemented")
+        findNavController(binding.navHostFragmentContainer.id)
+            .navigate(ListFragmentDirections.actionListFragmentToUpdateFragment(
+                dogAge = dog.age,
+                dogId = dog.uid,
+                dogName = dog.name,
+                dogBreed = dog.breed)
+            )
     }
 
     private fun filterListWithPrefs(list: List<Dog>): List<Dog> {

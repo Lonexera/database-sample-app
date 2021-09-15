@@ -37,7 +37,6 @@ class CursorDatabaseOpenHelper(context: Context) : SQLiteOpenHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
     }
 
     override suspend fun insert(dog: Dog) {

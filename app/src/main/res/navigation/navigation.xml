@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.databasesampleapp.view.ListFragment"
+        android:label="ListFragment"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_updateFragment"
+            app:destination="@id/updateFragment" >
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.databasesampleapp.view.AddFragment"
+        android:label="AddFragment"
+        tools:layout="@layout/fragment_add">
+        <action
+            android:id="@+id/action_addFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.databasesampleapp.view.FilterFragment"
+        android:label="FilterFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.databasesampleapp.view.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.databasesampleapp.view.UpdateFragment"
+        android:label="UpdateFragment">
+        <argument
+            android:name="dogName"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="dogAge"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <argument
+            android:name="dogBreed"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="dogId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_updateFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+</navigation>

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.databasesampleapp.R
 import com.databasesampleapp.databinding.FragmentAddBinding
 import com.databasesampleapp.db.room.Dog
@@ -34,19 +36,30 @@ class UpdateFragment : Fragment() {
         binding.addButton.text = getString(R.string.update_button_text)
         binding.addToolbar.title = getString(R.string.update_toolbar_title)
 
+        val safeArgs: UpdateFragmentArgs by navArgs()
+        dogId = safeArgs.dogId
 
+        with(binding) {
+            nameEdit.setText(safeArgs.dogName)
+            ageEdit.setText(safeArgs.dogAge.toString())
+            breedEdit.setText(safeArgs.dogBreed)
+        }
 
         binding.addButton.setOnClickListener {
-            if(isInputValid())
+            if(isInputValid()) {
                 listener.updateDog(getUpdatedDog())
+                navigateToList()
+            }
             else showInputErrorTexts()
         }
 
         binding.addToolbar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.action_save -> {
-                    if(isInputValid())
+                    if(isInputValid()) {
                         listener.updateDog(getUpdatedDog())
+                        navigateToList()
+                    }
                     else showInputErrorTexts()
                     true
                 }
@@ -54,7 +67,7 @@ class UpdateFragment : Fragment() {
             }
         }
         binding.addToolbar.setNavigationOnClickListener {
-            // TODO implement update toolbar navigation listener
+            navigateToList()
         }
 
     }
@@ -103,5 +116,9 @@ class UpdateFragment : Fragment() {
     private fun showInputErrorToast() {
         Toast.makeText(context, "Invalid input", Toast.LENGTH_SHORT)
             .show()
+    }
+
+    private fun navigateToList() {
+        findNavController().navigate(R.id.action_updateFragment_to_listFragment)
     }
 }
