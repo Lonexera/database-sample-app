@@ -15,7 +15,7 @@ import com.databasesampleapp.db.room.Dog
 class UpdateFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
 
     private var dogId = 0
 

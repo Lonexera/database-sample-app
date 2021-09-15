@@ -15,7 +15,7 @@ import com.databasesampleapp.databinding.FragmentListBinding
 class ListFragment : Fragment() {
 
     private var _binding: FragmentListBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
 
     private lateinit var dogAdapter: DogAdapter
 

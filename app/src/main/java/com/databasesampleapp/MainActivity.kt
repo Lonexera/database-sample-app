@@ -10,7 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        println("hi")
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)!!
 
         when(prefs.getString(getString(R.string.selector_title),
             getString(R.string.selector_room_entry))) {
@@ -18,16 +19,19 @@ class MainActivity : AppCompatActivity() {
                 openRoomActivity()
             getString(R.string.selector_cursor_entry) ->
                 openCursorActivity()
+            else -> print("nothing")
         }
     }
 
     private fun openRoomActivity() {
+        print("room")
         val intent = Intent(this, RoomActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     private fun openCursorActivity() {
+        print("cursor")
         val intent = Intent(this, CursorActivity::class.java)
         startActivity(intent)
         finish()

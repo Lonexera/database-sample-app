@@ -14,7 +14,7 @@ import com.databasesampleapp.db.room.Dog
 class AddFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
 
     interface AddFragmentListener {
         fun insertDog(dog: Dog)

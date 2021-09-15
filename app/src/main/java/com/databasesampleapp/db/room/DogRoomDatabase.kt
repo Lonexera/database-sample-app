@@ -27,7 +27,9 @@ abstract class DogRoomDatabase : RoomDatabase() {
                     context,
                     DogRoomDatabase::class.java,
                     "dog_room_database"
-                ).build()
+                )
+                    .addCallback(DogDatabaseCallback(scope))
+                    .build()
 
                 INSTANCE = instance
                 instance
