@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:fitsSystemWindows="true"
+            android:theme="@style/ToolbarWhiteIcons"
+            app:titleTextColor="@color/white"
             app:title="@string/add_toolbar_title"
             app:menu="@menu/add_toolbar"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"/>

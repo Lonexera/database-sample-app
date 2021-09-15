@@ -17,6 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:fitsSystemWindows="true"
+            android:theme="@style/ToolbarWhiteIcons"
+            app:titleTextColor="@color/white"
             app:menu="@menu/list_toolbar"
             app:title="@string/list_toolbar_title"/>
     </com.google.android.material.appbar.AppBarLayout>
