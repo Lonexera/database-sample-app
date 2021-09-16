@@ -8,4 +8,3 @@ The task is to create Database of cats/dogs/auto(anything you want)
 4. You should also add Update and Delete functionality!
 5. The app should provide two implementations(first for Cursors and second for Room), and should be able to change implementation in runtime(by button click, settings, etc.)
 
-# On the image you can see the mockups of all screens, it's not the exact design, so feel free to play with design and items :)
