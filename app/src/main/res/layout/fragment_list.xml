@@ -38,10 +38,10 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:backgroundTint="@color/yellow"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
         app:srcCompat="@drawable/ic_baseline_add_48"
+        app:rippleColor="@color/ripple_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/floating_add_button_description" />

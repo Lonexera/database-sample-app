@@ -12,6 +12,7 @@
         android:theme="@style/Theme.DatabaseSampleApp">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RoomActivity"/>
-        <activity android:name=".CursorActivity"/>
+        <activity android:name=".RoomActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CursorActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

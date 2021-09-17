@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.databasesampleapp.DogItemListener
 import com.databasesampleapp.R
 import com.databasesampleapp.adapter.DogAdapter
@@ -40,6 +41,17 @@ class ListFragment : Fragment() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = dogAdapter
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if(dy > 0)
+                        binding.floatingAddButton.hide()
+                    else
+                        binding.floatingAddButton.show()
+                    super.onScrolled(recyclerView, dx, dy)
+                }
+            })
         }
 
         binding.floatingAddButton.setOnClickListener {
