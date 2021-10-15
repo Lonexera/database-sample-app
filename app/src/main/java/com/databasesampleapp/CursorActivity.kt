@@ -10,6 +10,10 @@ import androidx.preference.PreferenceManager
 import com.databasesampleapp.adapter.DogAdapter
 import com.databasesampleapp.databinding.ActivityMainBinding
 import com.databasesampleapp.db.room.Dog
+import com.databasesampleapp.utils.DB_SELECTOR_KEY
+import com.databasesampleapp.utils.FILTER_AGE_KEY
+import com.databasesampleapp.utils.FILTER_BREED_KEY
+import com.databasesampleapp.utils.FILTER_NAME_KEY
 import com.databasesampleapp.view.AddFragment
 import com.databasesampleapp.view.ListFragment
 import com.databasesampleapp.view.ListFragmentDirections
@@ -19,10 +23,10 @@ import com.databasesampleapp.viewModels.DogCursorViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class CursorActivity: AppCompatActivity(), ListFragment.ListFragmentListener,
-SettingsFragment.SettingsListener,
-AddFragment.AddFragmentListener,
-DogItemListener {
+class CursorActivity : AppCompatActivity(), ListFragment.ListFragmentListener,
+    SettingsFragment.SettingsListener,
+    AddFragment.AddFragmentListener,
+    DogItemListener {
 
     private lateinit var binding: ActivityMainBinding
     private val cursorViewModel: DogCursorViewModel by viewModels {
@@ -59,8 +63,10 @@ DogItemListener {
     override fun onChangedPrefs() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-        when(prefs.getString(getString(R.string.db_selector_key),
-        getString(R.string.selector_room_entry))) {
+        when (prefs.getString(
+            DB_SELECTOR_KEY,
+            getString(R.string.selector_room_entry)
+        )) {
             getString(R.string.selector_room_entry) -> openRoomActivity()
             else -> findNavController(binding.navHostFragmentContainer.id).popBackStack()
         }
@@ -83,11 +89,13 @@ DogItemListener {
 
     override fun openUpdateScreen(dog: Dog) {
         findNavController(binding.navHostFragmentContainer.id)
-            .navigate(ListFragmentDirections.actionListFragmentToUpdateFragment(
-                dogAge = dog.age,
-                dogId = dog.uid,
-                dogName = dog.name,
-                dogBreed = dog.breed)
+            .navigate(
+                ListFragmentDirections.actionListFragmentToUpdateFragment(
+                    dogAge = dog.age,
+                    dogId = dog.uid,
+                    dogName = dog.name,
+                    dogBreed = dog.breed
+                )
             )
     }
 
@@ -98,17 +106,17 @@ DogItemListener {
 
         val defaultValue = getString(R.string.filter_default_value)
         val prefName = prefs?.getString(
-            getString(R.string.filter_name_key),
+            FILTER_NAME_KEY,
             defaultValue
         ) ?: defaultValue
 
         val prefAge = prefs?.getString(
-            getString(R.string.filter_age_key),
+            FILTER_AGE_KEY,
             defaultValue
         ) ?: defaultValue
 
         val prefBreed = prefs?.getString(
-            getString(R.string.filter_breed_key),
+            FILTER_BREED_KEY,
             defaultValue
         ) ?: defaultValue
 
@@ -118,10 +126,10 @@ DogItemListener {
             else filteredList
 
         filteredList = if (prefAge != defaultValue &&
-            prefAge.matches("""[0-9]{1,3}""".toRegex())) {
+            prefAge.matches("""[0-9]{1,3}""".toRegex())
+        ) {
             filteredList.filter { it.age == prefAge.toInt() }
-        }
-        else filteredList
+        } else filteredList
 
         filteredList = if (prefBreed != defaultValue)
             filteredList.filter { it.breed == prefBreed }

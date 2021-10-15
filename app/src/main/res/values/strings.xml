@@ -29,15 +29,12 @@
     <!-- Filter screen texts -->
     <string name="filter_name_title">Name</string>
     <string name="filter_name_dialog_title">Filter by name</string>
-    <string name="filter_name_key">filter name</string>
 
     <string name="filter_age_title">Age</string>
     <string name="filter_age_dialog_title">Filter by age</string>
-    <string name="filter_age_key">filter age</string>
 
     <string name="filter_breed_title">Breed</string>
     <string name="filter_breed_dialog_title">Filter by breed</string>
-    <string name="filter_breed_key">filter breed</string>
 
     <string name="filter_default_value" />
 
@@ -46,7 +43,6 @@
     <string name="update_toolbar_title">Update dog</string>
 
     <!-- Settings texts -->
-    <string name="db_selector_key">db selector</string>
     <string name="selector_title">Database</string>
     <string name="selector_dialog_title">Choose preferred implementation</string>
     <string-array name="selector_entries">

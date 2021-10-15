@@ -9,6 +9,10 @@ import androidx.preference.PreferenceManager
 import com.databasesampleapp.adapter.DogAdapter
 import com.databasesampleapp.databinding.ActivityMainBinding
 import com.databasesampleapp.db.room.Dog
+import com.databasesampleapp.utils.DB_SELECTOR_KEY
+import com.databasesampleapp.utils.FILTER_AGE_KEY
+import com.databasesampleapp.utils.FILTER_BREED_KEY
+import com.databasesampleapp.utils.FILTER_NAME_KEY
 import com.databasesampleapp.view.AddFragment
 import com.databasesampleapp.view.ListFragment
 import com.databasesampleapp.view.ListFragmentDirections
@@ -48,7 +52,8 @@ DogItemListener {
     override fun onChangedPrefs() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-        when(prefs.getString(getString(R.string.db_selector_key),
+        when(prefs.getString(
+            DB_SELECTOR_KEY,
         getString(R.string.selector_room_entry))) {
             getString(R.string.selector_cursor_entry) -> openCursorActivity()
             else -> findNavController(binding.navHostFragmentContainer.id).popBackStack()
@@ -84,17 +89,17 @@ DogItemListener {
 
         val defaultValue = getString(R.string.filter_default_value)
         val prefName = prefs?.getString(
-            getString(R.string.filter_name_key),
+            FILTER_NAME_KEY,
             defaultValue
         ) ?: defaultValue
 
         val prefAge = prefs?.getString(
-            getString(R.string.filter_age_key),
+            FILTER_AGE_KEY,
             defaultValue
         ) ?: defaultValue
 
         val prefBreed = prefs?.getString(
-            getString(R.string.filter_breed_key),
+            FILTER_BREED_KEY,
             defaultValue
         ) ?: defaultValue
 
