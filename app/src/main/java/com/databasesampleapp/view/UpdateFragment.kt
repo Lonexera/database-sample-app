@@ -6,16 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.databasesampleapp.FragmentListener
 import com.databasesampleapp.R
+import com.databasesampleapp.viewModels.UpdateViewModel
 import com.databasesampleapp.databinding.FragmentAddBinding
-import com.databasesampleapp.db.room.Dog
+import com.databasesampleapp.viewModels.DogViewModelFactory
 
 class UpdateFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: UpdateViewModel by viewModels {
+        DogViewModelFactory((activity as FragmentListener).getRepository())
+    }
 
     private var dogId = 0
 
@@ -31,45 +37,67 @@ class UpdateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listener = activity as AddFragment.AddFragmentListener
-
-        binding.addButton.text = getString(R.string.update_button_text)
-        binding.addToolbar.title = getString(R.string.update_toolbar_title)
-
         val safeArgs: UpdateFragmentArgs by navArgs()
         dogId = safeArgs.dogId
 
         with(binding) {
+            addButton.text = getString(R.string.update_button_text)
+            addToolbar.title = getString(R.string.update_toolbar_title)
+
             nameEdit.setText(safeArgs.dogName)
             ageEdit.setText(safeArgs.dogAge.toString())
             breedEdit.setText(safeArgs.dogBreed)
-        }
 
-        binding.addButton.setOnClickListener {
-            if(isInputValid()) {
-                listener.updateDog(getUpdatedDog())
-                navigateToList()
+            addButton.setOnClickListener {
+                onUpdate()
             }
-            else showInputErrorTexts()
-        }
 
-        binding.addToolbar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId) {
-                R.id.action_save -> {
-                    if(isInputValid()) {
-                        listener.updateDog(getUpdatedDog())
-                        navigateToList()
+            addToolbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.action_save -> {
+                        onUpdate()
+                        true
                     }
-                    else showInputErrorTexts()
-                    true
+                    else -> true
                 }
-                else -> true
+            }
+            addToolbar.setNavigationOnClickListener {
+                viewModel.onBack()
             }
         }
-        binding.addToolbar.setNavigationOnClickListener {
-            navigateToList()
-        }
 
+        with(viewModel) {
+            toList.observe(viewLifecycleOwner) {
+                it.getContentIfNotHandled()?.let {
+                    findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+                }
+            }
+
+            inputNameError.observe(viewLifecycleOwner) {
+                it.getContentIfNotHandled()?.let {
+                    binding.nameEdit.error = getString(R.string.name_edit_error)
+                }
+            }
+
+            inputAgeError.observe(viewLifecycleOwner) {
+                it.getContentIfNotHandled()?.let {
+                    binding.ageEdit.error = getString(R.string.age_edit_error)
+                }
+            }
+
+            inputBreedError.observe(viewLifecycleOwner) {
+                it.getContentIfNotHandled()?.let {
+                    binding.breedEdit.error = getString(R.string.breed_edit_error)
+                }
+            }
+
+            inputError.observe(viewLifecycleOwner) {
+                it.getContentIfNotHandled()?.let {
+                    Toast.makeText(context, "Invalid input", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -77,48 +105,12 @@ class UpdateFragment : Fragment() {
         super.onDestroy()
     }
 
-
-    private fun getUpdatedDog(): Dog {
-        return Dog(
+    private fun onUpdate() {
+        viewModel.onUpdateBtnClicked(
             binding.nameEdit.text.toString(),
-            binding.ageEdit.text.toString().toInt(),
-            binding.breedEdit.text.toString()
-        ).apply { uid = dogId }
-    }
-
-    private fun isInputValid(): Boolean {
-        return isInputNameValid() &&
-                isInputAgeValid() &&
-                isInputBreedValid()
-    }
-
-    private fun isInputNameValid(): Boolean {
-        val nameEditText = binding.nameEdit.text.toString()
-        return nameEditText.matches(""".+""".toRegex())
-    }
-    private fun isInputAgeValid(): Boolean {
-        val ageEditText = binding.ageEdit.text.toString()
-        return ageEditText.matches("""[0-9]{1,3}""".toRegex())
-    }
-    private fun isInputBreedValid(): Boolean {
-        val breedEditText = binding.breedEdit.text.toString()
-        return breedEditText.matches(""".+""".toRegex())
-    }
-
-    private fun showInputErrorTexts() {
-        with(binding) {
-            if (!isInputNameValid()) nameEdit.error = getString(R.string.name_edit_error)
-            if (!isInputAgeValid()) ageEdit.error = getString(R.string.age_edit_error)
-            if (!isInputBreedValid()) breedEdit.error = getString(R.string.breed_edit_error)
-        }
-        showInputErrorToast()
-    }
-    private fun showInputErrorToast() {
-        Toast.makeText(context, "Invalid input", Toast.LENGTH_SHORT)
-            .show()
-    }
-
-    private fun navigateToList() {
-        findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+            binding.ageEdit.text.toString(),
+            binding.breedEdit.text.toString(),
+            dogId
+        )
     }
 }

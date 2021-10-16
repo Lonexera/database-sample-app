@@ -3,10 +3,8 @@ package com.databasesampleapp.db.room
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
-
 @Dao
 interface DogRoomDao {
-
     @Query("SELECT * FROM dogs")
     fun getAll(): Flow<List<Dog>>
 
