@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.databasesampleapp.FragmentListener
 import com.databasesampleapp.viewModels.ListViewModel
 import com.databasesampleapp.R
 import com.databasesampleapp.adapter.DogAdapter
@@ -20,8 +20,8 @@ class ListFragment : Fragment() {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ListViewModel by viewModels {
-        DogViewModelFactory((activity as FragmentListener).getRepository())
+    private val viewModel: ListViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
     }
 
     private val dogAdapter = DogAdapter(
@@ -80,21 +80,9 @@ class ListFragment : Fragment() {
         }
 
         with(viewModel) {
-            toList.observe(viewLifecycleOwner) {
-                it.getContentIfNotHandled()?.let {
-                    findNavController().popBackStack()
-                }
-            }
-
             toAdd.observe(viewLifecycleOwner) {
                 it.getContentIfNotHandled()?.let {
                     findNavController().navigate(R.id.action_listFragment_to_addFragment)
-                }
-            }
-
-            toSwitchActivity.observe(viewLifecycleOwner) {
-                it.getContentIfNotHandled()?.let {
-                    (activity as FragmentListener).switchActivity()
                 }
             }
 

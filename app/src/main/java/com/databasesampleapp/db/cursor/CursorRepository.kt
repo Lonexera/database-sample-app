@@ -7,6 +7,7 @@ class CursorRepository(
     private val dogCursorDao: DogCursorDao
 ) : Repository {
 
+    override val repoName: String = "cursor"
     override val allDogs = dogCursorDao.getAll()
 
     override suspend fun insert(dog: Dog) {

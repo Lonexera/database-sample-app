@@ -6,6 +6,7 @@ class RoomRepository(
     private val dogRoomDao: DogRoomDao
     ) : Repository {
 
+    override val repoName: String = "room"
     override val allDogs = dogRoomDao.getAll()
 
     override suspend fun insert(dog: Dog) {

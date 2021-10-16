@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
-import com.databasesampleapp.FragmentListener
 import com.databasesampleapp.viewModels.ListViewModel
 import com.databasesampleapp.R
 import com.databasesampleapp.viewModels.DogViewModelFactory
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    private val viewModel: ListViewModel by viewModels {
-        DogViewModelFactory((activity as FragmentListener).getRepository())
+    private val viewModel: ListViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -22,6 +23,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.toList.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let {
+                findNavController().popBackStack()
+            }
+        }
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

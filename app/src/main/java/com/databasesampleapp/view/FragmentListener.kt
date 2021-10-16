@@ -1,4 +1,4 @@
-package com.databasesampleapp
+package com.databasesampleapp.view
 
 import com.databasesampleapp.db.Repository
 

@@ -3,7 +3,6 @@ package com.databasesampleapp.viewModels
 import android.content.Context
 import androidx.lifecycle.*
 import androidx.preference.PreferenceManager
-import com.databasesampleapp.R
 import com.databasesampleapp.db.Repository
 import com.databasesampleapp.db.room.Dog
 import com.databasesampleapp.utils.*
@@ -48,16 +47,11 @@ class ListViewModel(
     fun onChangedPrefs(context: Context) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 
-        when (prefs.getString(
-            DB_SELECTOR_KEY,
-            context.getString(R.string.selector_room_entry)
-        )) {
-            context.getString(R.string.selector_room_entry) -> {
-                _toSwitchActivity.value = Event(Unit)
-            }
-            else -> {
-                _toList.value = Event(Unit)
-            }
+        val repoImpl = repository.repoName
+
+        when (prefs.getString(DB_SELECTOR_KEY, repoImpl)) {
+            repoImpl -> _toList.value = Event(Unit)
+            else -> _toSwitchActivity.value = Event(Unit)
         }
     }
 
