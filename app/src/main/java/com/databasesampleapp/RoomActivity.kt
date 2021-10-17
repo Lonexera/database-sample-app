@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.databasesampleapp.databinding.ActivityMainBinding
 import com.databasesampleapp.db.Repository
 import com.databasesampleapp.view.FragmentListener

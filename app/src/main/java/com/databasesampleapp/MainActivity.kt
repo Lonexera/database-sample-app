@@ -3,7 +3,6 @@ package com.databasesampleapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.databasesampleapp.viewModels.MainViewModel
 import com.databasesampleapp.viewModels.MainViewModelFactory

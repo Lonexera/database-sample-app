@@ -4,9 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.databasesampleapp.databinding.ActivityMainBinding
 import com.databasesampleapp.db.Repository
 import com.databasesampleapp.view.FragmentListener
