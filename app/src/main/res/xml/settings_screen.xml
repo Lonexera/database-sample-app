@@ -4,7 +4,7 @@
     <ListPreference
         android:entries="@array/selector_entries"
         android:entryValues="@array/selector_entry_values"
-        android:key="@string/db_selector_key"
+        android:key="db selector"
         android:defaultValue="@string/selector_room_entry"
         android:dialogTitle="@string/selector_dialog_title"
         android:title="@string/selector_title"/>

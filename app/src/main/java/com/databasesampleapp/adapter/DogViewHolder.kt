@@ -3,14 +3,14 @@ package com.databasesampleapp.adapter
 import android.content.res.Resources
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.databasesampleapp.DogItemListener
 import com.databasesampleapp.R
 import com.databasesampleapp.databinding.DogLayoutBinding
 import com.databasesampleapp.db.room.Dog
 
 class DogViewHolder(private val binding: DogLayoutBinding,
-                    private val dogItemListener: DogItemListener,
-                    private val resources: Resources)
+                    private val resources: Resources,
+                    private val onDeleteClick: (Dog) -> Unit,
+                    private val onEditClick: (Dog) -> Unit)
     : RecyclerView.ViewHolder(binding.root) {
 
     private lateinit var dog: Dog
@@ -52,11 +52,11 @@ class DogViewHolder(private val binding: DogLayoutBinding,
             updateButton.visibility = View.VISIBLE
 
             deleteButton.setOnClickListener {
-                dogItemListener.deleteDog(dog)
+                onDeleteClick(dog)
             }
 
             updateButton.setOnClickListener {
-                dogItemListener.openUpdateScreen(dog)
+                onEditClick(dog)
                 makeButtonsInvisible()
             }
         }

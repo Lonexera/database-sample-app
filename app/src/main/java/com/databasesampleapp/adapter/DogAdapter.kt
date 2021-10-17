@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.databasesampleapp.DogItemListener
 import com.databasesampleapp.databinding.DogLayoutBinding
 import com.databasesampleapp.db.room.Dog
 
-class DogAdapter(private val dogItemListener: DogItemListener)
-    : ListAdapter<Dog, DogViewHolder>(itemComparator) {
+class DogAdapter(
+    private val onDeleteClick: (Dog) -> Unit,
+    private val onEditClick: (Dog) -> Unit
+) : ListAdapter<Dog, DogViewHolder>(itemComparator) {
 
     private companion object {
-
         private val itemComparator = object : DiffUtil.ItemCallback<Dog>() {
             override fun areItemsTheSame(oldItem: Dog, newItem: Dog): Boolean {
                 return oldItem.uid == newItem.uid
@@ -28,7 +28,12 @@ class DogAdapter(private val dogItemListener: DogItemListener)
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = DogLayoutBinding.inflate(layoutInflater, parent, false)
 
-        return DogViewHolder(binding, dogItemListener, binding.root.context.resources)
+        return DogViewHolder(
+            binding,
+            binding.root.context.resources,
+            onDeleteClick,
+            onEditClick
+        )
     }
 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {

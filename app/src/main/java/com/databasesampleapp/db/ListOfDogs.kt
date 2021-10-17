@@ -2,7 +2,6 @@ package com.databasesampleapp.db
 
 import com.databasesampleapp.db.room.Dog
 
-
 val dogsForCreatingDB = listOf<Dog>(
     Dog("Baxter", 3, "American Bulldog"),
     Dog("Harley", 1, "Havanese"),
@@ -16,4 +15,3 @@ val dogsForCreatingDB = listOf<Dog>(
     Dog("Baxter", 11, "Icelandic Sheepdog"),
     Dog("Oreo", 4, "Havanese")
 )
-

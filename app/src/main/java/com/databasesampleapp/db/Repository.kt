@@ -1,11 +1,13 @@
-package com.databasesampleapp.db.cursor
+package com.databasesampleapp.db
 
 import com.databasesampleapp.db.room.Dog
 import kotlinx.coroutines.flow.Flow
 
-interface DogCursorDao {
+interface Repository {
+    val repoName: String
+    val allDogs: Flow<List<Dog>>
+
     suspend fun insert(dog: Dog)
     suspend fun update(dog: Dog)
     suspend fun delete(dog: Dog)
-    fun getAll(): Flow<List<Dog>>
 }

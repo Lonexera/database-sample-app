@@ -1,20 +1,25 @@
 package com.databasesampleapp.db.cursor
 
+import com.databasesampleapp.db.Repository
 import com.databasesampleapp.db.room.Dog
+import com.databasesampleapp.utils.CURSOR
 
-class CursorRepository(private val dogCursorDao: DogCursorDao) {
+class CursorRepository(
+    private val dogCursorDao: DogCursorDao
+) : Repository {
 
-    val allDogs = dogCursorDao.getAll()
+    override val repoName: String = CURSOR
+    override val allDogs = dogCursorDao.getAll()
 
-    suspend fun insert(dog: Dog) {
+    override suspend fun insert(dog: Dog) {
         dogCursorDao.insert(dog)
     }
 
-    suspend fun update(dog: Dog) {
+    override suspend fun update(dog: Dog) {
         dogCursorDao.update(dog)
     }
 
-    suspend fun delete(dog: Dog) {
+    override suspend fun delete(dog: Dog) {
         dogCursorDao.delete(dog)
     }
 }

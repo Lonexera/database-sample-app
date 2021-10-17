@@ -6,21 +6,21 @@
         android:defaultValue="@string/filter_default_value"
         android:dialogTitle="@string/filter_name_dialog_title"
         android:title="@string/filter_name_title"
-        android:key="@string/filter_name_key"
+        android:key="filter name key"
         app:useSimpleSummaryProvider="true"/>
 
     <EditTextPreference
         android:defaultValue="@string/filter_default_value"
         android:dialogTitle="@string/filter_age_dialog_title"
         android:title="@string/filter_age_title"
-        android:key="@string/filter_age_key"
+        android:key="filter age key"
         app:useSimpleSummaryProvider="true"/>
 
     <EditTextPreference
         android:defaultValue="@string/filter_default_value"
         android:dialogTitle="@string/filter_breed_dialog_title"
         android:title="@string/filter_breed_title"
-        android:key="@string/filter_breed_key"
+        android:key="filter breed key"
         app:useSimpleSummaryProvider="true"/>
 
 </PreferenceScreen>

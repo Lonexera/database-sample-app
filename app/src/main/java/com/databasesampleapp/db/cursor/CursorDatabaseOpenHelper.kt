@@ -36,8 +36,7 @@ class CursorDatabaseOpenHelper(context: Context) : SQLiteOpenHelper(
         }
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-    }
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 
     override suspend fun insert(dog: Dog) {
         insertDog(writableDatabase, dog)
@@ -105,7 +104,6 @@ class CursorDatabaseOpenHelper(context: Context) : SQLiteOpenHelper(
         }
     }
 
-
     companion object {
         const val DATABASE_NAME = "dog_cursor_database"
         const val DATABASE_VERSION = 1
@@ -116,5 +114,4 @@ class CursorDatabaseOpenHelper(context: Context) : SQLiteOpenHelper(
         const val COLUMN_AGE = "AGE"
         const val COLUMN_BREED = "BREED"
     }
-
 }

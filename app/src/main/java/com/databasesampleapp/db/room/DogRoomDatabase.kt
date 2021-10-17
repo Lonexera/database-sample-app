@@ -10,14 +10,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 @Database(entities = [Dog::class], version = 1)
 abstract class DogRoomDatabase : RoomDatabase() {
 
     abstract fun dogDao(): DogRoomDao
 
     companion object {
-
         @Volatile
         private var INSTANCE: DogRoomDatabase? = null
 
@@ -38,7 +36,7 @@ abstract class DogRoomDatabase : RoomDatabase() {
 
         private class DogDatabaseCallback(
             private val scope: CoroutineScope
-            ) : RoomDatabase.Callback() {
+        ) : RoomDatabase.Callback() {
 
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)

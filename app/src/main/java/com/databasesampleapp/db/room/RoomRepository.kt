@@ -1,20 +1,24 @@
 package com.databasesampleapp.db.room
 
+import com.databasesampleapp.db.Repository
+import com.databasesampleapp.utils.ROOM
 
-class RoomRepository(private val dogRoomDao: DogRoomDao) {
+class RoomRepository(
+    private val dogRoomDao: DogRoomDao
+) : Repository {
 
-    val allDogs = dogRoomDao.getAll()
+    override val repoName: String = ROOM
+    override val allDogs = dogRoomDao.getAll()
 
-    suspend fun insert(dog: Dog) {
+    override suspend fun insert(dog: Dog) {
         dogRoomDao.insert(dog)
     }
 
-    suspend fun update(dog: Dog) {
+    override suspend fun update(dog: Dog) {
         dogRoomDao.update(dog)
     }
 
-    suspend fun delete(dog: Dog) {
+    override suspend fun delete(dog: Dog) {
         dogRoomDao.delete(dog)
     }
-
 }
