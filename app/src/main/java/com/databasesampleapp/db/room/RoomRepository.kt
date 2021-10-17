@@ -1,12 +1,13 @@
 package com.databasesampleapp.db.room
 
 import com.databasesampleapp.db.Repository
+import com.databasesampleapp.utils.ROOM
 
 class RoomRepository(
     private val dogRoomDao: DogRoomDao
     ) : Repository {
 
-    override val repoName: String = "room"
+    override val repoName: String = ROOM
     override val allDogs = dogRoomDao.getAll()
 
     override suspend fun insert(dog: Dog) {

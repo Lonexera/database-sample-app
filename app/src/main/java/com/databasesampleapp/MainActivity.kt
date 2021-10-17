@@ -3,33 +3,38 @@ package com.databasesampleapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.preference.PreferenceManager
+import androidx.activity.viewModels
+import com.databasesampleapp.viewModels.MainViewModel
+import com.databasesampleapp.viewModels.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModelFactory()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)!!
+        viewModel.checkPrefs(this)
 
-        when(prefs.getString(getString(R.string.selector_title),
-            getString(R.string.selector_room_entry))) {
-            getString(R.string.selector_room_entry) ->
-                openRoomActivity()
-            getString(R.string.selector_cursor_entry) ->
-                openCursorActivity()
-            else -> print("nothing")
+        with(viewModel) {
+            toCursor.observe(this@MainActivity) {
+                it.getContentIfNotHandled()?.let {
+                    openActivity(CursorActivity::class.java)
+                }
+            }
+
+            toRoom.observe(this@MainActivity) {
+                it.getContentIfNotHandled()?.let {
+                    openActivity(RoomActivity::class.java)
+                }
+            }
         }
     }
 
-    private fun openRoomActivity() {
-        val intent = Intent(this, RoomActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun openCursorActivity() {
-        val intent = Intent(this, CursorActivity::class.java)
+    private fun <T> openActivity(activityClass: Class<T>) {
+        val intent = Intent(this, activityClass)
         startActivity(intent)
         finish()
     }

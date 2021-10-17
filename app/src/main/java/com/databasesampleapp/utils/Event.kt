@@ -6,7 +6,11 @@ class Event<out T>(
     private var hasBeenHandled: Boolean = false
 
     fun getContentIfNotHandled(): T? {
-        return if (hasBeenHandled) null
-        else content
+        return if (hasBeenHandled) {
+            null
+        } else {
+            hasBeenHandled = true
+            content
+        }
     }
 }

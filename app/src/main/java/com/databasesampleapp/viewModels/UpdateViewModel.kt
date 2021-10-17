@@ -42,6 +42,7 @@ class UpdateViewModel(
                     dogBreed
                 )
             )
+            _toList.value = Event(Unit)
         } else {
             _inputError.value = Event(Unit)
         }
@@ -54,13 +55,14 @@ class UpdateViewModel(
         dogId: Int
     ) {
         if (isDataValid(dogName, dogAge, dogBreed)) {
-            insertDog(
+            updateDog(
                 Dog(
                     dogName,
                     dogAge.toInt(),
                     dogBreed
                 ).apply { uid = dogId }
             )
+            _toList.value = Event(Unit)
         } else {
             _inputError.value = Event(Unit)
         }
