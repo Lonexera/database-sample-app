@@ -105,7 +105,6 @@ class UpdateFragment : Fragment() {
     }
 
     private fun onUpdate() {
-        println("on update fragment")
         viewModel.onUpdateBtnClicked(
             binding.nameEdit.text.toString(),
             binding.ageEdit.text.toString(),

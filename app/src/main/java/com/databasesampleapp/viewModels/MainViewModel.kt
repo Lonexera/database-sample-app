@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
 import com.databasesampleapp.R
+import com.databasesampleapp.utils.DB_SELECTOR_KEY
 import com.databasesampleapp.utils.Event
+import com.databasesampleapp.utils.ROOM
 
 class MainViewModel : ViewModel() {
 
@@ -21,8 +23,8 @@ class MainViewModel : ViewModel() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 
         when (prefs.getString(
-            context.getString(R.string.selector_title),
-            context.getString(R.string.selector_room_entry)
+            DB_SELECTOR_KEY,
+            ROOM
         )) {
             context.getString(R.string.selector_room_entry) -> {
                 _toRoom.value = Event(Unit)

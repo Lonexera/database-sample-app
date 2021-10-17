@@ -32,8 +32,9 @@ class ListViewModel(
         return _filteredDogs
     }
 
-    fun onDelete(dog: Dog) = viewModelScope.launch {
+    fun onDelete(dog: Dog, context: Context) = viewModelScope.launch {
         repository.delete(dog)
+        filterList(context)
     }
 
     fun onEdit(dog: Dog) {

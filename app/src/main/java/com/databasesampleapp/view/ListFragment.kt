@@ -26,7 +26,7 @@ class ListFragment : Fragment() {
 
     private val dogAdapter = DogAdapter(
         onDeleteClick = {
-            viewModel.onDelete(it)
+            viewModel.onDelete(it, requireContext())
         },
         onEditClick = {
             viewModel.onEdit(it)
@@ -82,7 +82,6 @@ class ListFragment : Fragment() {
         with(viewModel) {
             toAdd.observe(viewLifecycleOwner) {
                 it.getContentIfNotHandled()?.let {
-                    println("navigate to add")
                     findNavController().navigate(R.id.action_listFragment_to_addFragment)
                 }
             }

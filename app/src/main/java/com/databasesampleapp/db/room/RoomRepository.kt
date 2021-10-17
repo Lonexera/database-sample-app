@@ -5,7 +5,7 @@ import com.databasesampleapp.utils.ROOM
 
 class RoomRepository(
     private val dogRoomDao: DogRoomDao
-    ) : Repository {
+) : Repository {
 
     override val repoName: String = ROOM
     override val allDogs = dogRoomDao.getAll()

@@ -36,7 +36,6 @@ class AddFragment : Fragment() {
         with(viewModel) {
             toList.observe(viewLifecycleOwner) {
                 it.getContentIfNotHandled()?.let {
-                    println("navigate to list")
                     findNavController().navigate(R.id.action_addFragment_to_listFragment)
                 }
             }

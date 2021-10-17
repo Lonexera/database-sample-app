@@ -11,5 +11,6 @@ data class Dog(
     @NonNull @ColumnInfo(name = "age") val age: Int,
     @NonNull @ColumnInfo(name = "breed") val breed: String
 ) {
-    @PrimaryKey(autoGenerate = true) var uid: Int = 0
+    @PrimaryKey(autoGenerate = true)
+    var uid: Int = 0
 }
